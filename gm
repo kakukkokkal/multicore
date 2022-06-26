@@ -1,0 +1,46 @@
+[submodule "wotlk/azerothcore-wotlk"]
+	path = wotlk/azerothcore-wotlk
+	url = https://github.com/azerothcore/azerothcore-wotlk.git
+[submodule "wotlk/trinitycore"]
+	path = wotlk/trinitycore
+	url = https://github.com/trinitycore/trinitycore.git
+	branch = 3.3.5
+[submodule "cataclysm/trinitycore"]
+	path = cataclysm/trinitycore
+	url = https://github.com/The-Cataclysm-Preservation-Project/trinitycore.git
+	branch = master
+[submodule "pandaria/pandaria_5.4.8"]
+	path = pandaria/pandaria_5.4.8
+	url = https://github.com/alexkulya/pandaria_5.4.8.git
+	branch = master
+[submodule "legion/LegionCore-7.3.5"]
+	path = legion/LegionCore-7.3.5
+	url = https://github.com/dufernst/LegionCore-7.3.5.git
+	branch = master
+[submodule "bfa/BfaCore-Reforged"]
+	path = bfa/BfaCore-Reforged
+	url = https://github.com/Titans-Project/BfaCore-Reforged.git
+	branch = main
+[submodule "sl/AshamaneCore"]
+	path = sl/AshamaneCore
+	url = https://github.com/AshamaneProject/AshamaneCore.git
+	branch = master
+[submodule "rolling/trinitycore"]
+	path = rolling/trinitycore
+	url = https://github.com/trinitycore/trinitycore.git
+	branch = master
+[submodule "pandaria/Legends-of-Azeroth-Pandaria-5.4.8"]
+	path = pandaria/Legends-of-Azeroth-Pandaria-5.4.8
+	url = https://github.com/Legends-of-Azeroth/Legends-of-Azeroth-Pandaria-5.4.8
+[submodule "rolling/vSLDB"]
+	path = rolling/vSLDB
+	url = https://github.com/Legends-of-Azeroth/vSLDB
+[submodule "rolling/Legends-of-Azeroth-Legends-of-Azeroth-Shadowlands"]
+	path = rolling/Legends-of-Azeroth-Legends-of-Azeroth-Shadowlands
+	url = https://github.com/Legends-of-Azeroth/Legends-of-Azeroth-Legends-of-Azeroth-Shadowlands
+[submodule "pandaria/torghast-project-5.4.8"]
+	path = pandaria/torghast-project-5.4.8
+	url = https://github.com/Legends-of-Azeroth/torghast-project-5.4.8.git
+[submodule "pandaria/SkyFire_548"]
+	path = pandaria/SkyFire_548
+	url = https://github.com/ProjectSkyFire/SkyFire_548.git

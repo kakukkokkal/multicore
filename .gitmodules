@@ -1,0 +1,20 @@
+[submodule "wotlk/azerothcore-wotlk"]
+	path = wotlk/azerothcore-wotlk
+	url = https://github.com/azerothcore/azerothcore-wotlk.git
+	branch = master
+[submodule "wotlk/trinitycore-wotlk"]
+	path = wotlk/trinitycore-wotlk
+	url = https://github.com/trinitycore/trinitycore.git
+	branch = 3.3.5
+[submodule "rolling/trinitycore"]
+	path = rolling/trinitycore
+	url = https://github.com/trinitycore/trinitycore.git
+	branch = master
+[submodule "cataclysm/trinitycore-cata"]
+	path = cataclysm/trinitycore-cata
+	url = https://github.com/The-Cataclysm-Preservation-Project/trinitycore.git
+	branch = master
+[submodule "pandaria/SkyFire_548"]
+	path = pandaria/SkyFire_548
+	url = https://github.com/ProjectSkyFire/SkyFire_548.git
+	branch = main
