@@ -18,3 +18,11 @@
 	path = pandaria/SkyFire_548
 	url = https://github.com/ProjectSkyFire/SkyFire_548.git
 	branch = main
+[submodule "bfa/BfaCore-Reforged"]
+	path = bfa/BfaCore-Reforged
+	url = https://github.com/Titans-Project/BfaCore-Reforged.git
+	branch = main
+[submodule "pandaria/torghast-project-5.4.8"]
+	path = pandaria/torghast-project-5.4.8
+	url = https://github.com/Legends-of-Azeroth/torghast-project-5.4.8.git
+	branch = main
