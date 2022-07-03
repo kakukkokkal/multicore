@@ -26,3 +26,7 @@
 	path = pandaria/torghast-project-5.4.8
 	url = https://github.com/Legends-of-Azeroth/torghast-project-5.4.8.git
 	branch = main
+[submodule "legion/legioncore"]
+	path = legion/legioncore
+	url = https://github.com/dufernst/LegionCore-7.3.5.git
+	branch = master
