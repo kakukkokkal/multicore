@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  # accessible at //trinitycore-cata-db:3306 inside the swarm
+  trinitycore-cata-db:
+    image: mysql:8.0.19
+    restart: always
+    volumes:
+      # store database outside the container
+      - ../../../data/cataclysm/trinitycore-cata/database:/var/lib/mysql:delegated
+    ports:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+  authserver:
+    image: build:cataclysm_trinitycore
+    volumes:
+      # store database outside the container
+      - ../../../cataclysm/trinitycore-cata/sql/create:/docker-entrypoint-initdb.d
+      - ../../../data/cataclysm/trinitycore-cata/data:/data
+      - ../../../install/trinitycore-cata:/install
+    entrypoint: bash -c 'sleep 10 && /install/bin/bnetserver'
+    working_dir: /install/bin
+    depends_on:
+      - "trinitycore-cata-db"
+    ports:
+      - 8085:8085
+  worldserver:
+    image: build:cataclysm_trinitycore
+    volumes:
+      # store database outside the container
+      - ../../../data/cataclysm/trinitycore-cata/data:/data
+      - ../../../install/trinitycore-cata:/install
+      - ../../../cataclysm/trinitycore-cata:/source
+    entrypoint: bash -c 'sleep 10 && /install/bin/worldserver'
+    working_dir: /install/bin
+    tty: true # Prevent prompt from spamming stdout
+    stdin_open: true
+    depends_on:
+      - "trinitycore-cata-db"
+    ports:
+      - 3724:3724

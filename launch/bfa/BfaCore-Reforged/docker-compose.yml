@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+  # accessible at //bfacore-db:3306 inside the swarm
+  bfacore-db:
+    image: mysql:8.0.19
+    restart: always
+    volumes:
+      # store database outside the container
+      - ../../../data/bfa/bfacore/database:/var/lib/mysql:delegated
+    ports:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+  authserver:
+    image: build:bfacore
+    volumes:
+      # store database outside the container
+      - ../../../data/bfa/bfacore/data:/data
+      - ../../../install/bfacore:/install
+    entrypoint: bash -c 'sleep 10 && /install/bin/bnetserver'
+    working_dir: /install/bin
+    depends_on:
+      - "bfacore-db"
+    ports:
+      - 3724:3724
+      - 1119:1119
+      - 8081:8081
+  worldserver:
+    image: build:bfacore
+    volumes:
+      # store database outside the container
+      - ../../../data/bfa/bfacore/data:/data
+      - ../../../install/bfacore:/install
+      - ../../../bfa/BfaCore-Reforged:/source
+    entrypoint: bash -ci 'sleep 10 && /install/bin/worldserver'
+    working_dir: /install/bin
+    tty: true # Prevent prompt from spamming stdout
+    stdin_open: true
+    depends_on:
+      - "bfacore-db"
+    ports:
+      - 8085:8085
+      - 8086:8086
+      - 7878:7878
+      - 3443:3443 # used for remote access via telnet

@@ -3,7 +3,7 @@ version: "3.7"
 services:
   # accessible at //legioncore-db:3306 inside the swarm
   legioncore-db:
-    image: mysql:5.6
+    image: mysql:8.0.19
     restart: always
     volumes:
       # store database outside the container
@@ -19,7 +19,8 @@ services:
       # store database outside the container
       - ../../../data/legion/legioncore/data:/data
       - ../../../install/legioncore:/install
-    entrypoint: bash -c 'sleep 10 && /install/bin/bnetserver'
+      - ../../../legion/legioncore:/source
+    entrypoint: bash -c 'sleep 10 && /install/bin/worldserver'
     working_dir: /install/bin
     tty: true # Prevent prompt from spamming stdout
     stdin_open: true
