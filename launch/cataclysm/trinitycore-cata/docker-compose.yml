@@ -25,7 +25,9 @@ services:
     depends_on:
       - "trinitycore-cata-db"
     ports:
-      - 8085:8085
+      - 3724:3724
+      - 1119:1119
+      - 8081:8081
   worldserver:
     image: build:cataclysm_trinitycore
     volumes:
@@ -40,4 +42,7 @@ services:
     depends_on:
       - "trinitycore-cata-db"
     ports:
-      - 3724:3724
+      - 8085:8085
+      - 8086:8086
+      - 7878:7878
+      - 3443:3443 # used for remote access via telnet
