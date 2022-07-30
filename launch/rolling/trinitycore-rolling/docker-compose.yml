@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  # accessible at //trinitycore-rolling-db:3306 inside the swarm
+  trinitycore-rolling-db:
+    image: mysql:8.0.19
+    restart: always
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/trinitycore-rolling/database:/var/lib/mysql:delegated
+    ports:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+  authserver:
+    image: build:rolling_trinitycore
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/trinitycore-rolling/data:/data
+      - ../../../install/trinitycore-rolling:/install
+    entrypoint: bash -c 'sleep 10 && /install/bin/bnetserver'
+    working_dir: /install/bin
+    depends_on:
+      - "trinitycore-rolling-db"
+    ports:
+      - 3724:3724
+      - 1119:1119
+      - 8081:8081
+  worldserver:
+    image: build:rolling_trinitycore
+    cap_add:
+    - SYS_PTRACE
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/trinitycore-rolling/data:/data
+      - ../../../install/trinitycore-rolling:/install
+      - ../../../rolling/trinitycore:/source
+    entrypoint: bash -c 'sleep 10 && /install/bin/worldserver'
+    working_dir: /install/bin
+    tty: true # Prevent prompt from spamming stdout
+    stdin_open: true
+    depends_on:
+      - "trinitycore-rolling-db"
+    ports:
+      - 8085:8085
+      - 8086:8086
+      - 7878:7878
+      - 3443:3443 # used for remote access via telnet
