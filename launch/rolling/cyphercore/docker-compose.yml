@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  # accessible at //cyphercore-db:3306 inside the swarm
+  cyphercore-db:
+    image: mysql:8.0.19
+    restart: always
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/cyphercore/database:/var/lib/mysql:delegated
+    ports:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+  authserver:
+    image: build:rolling_cyphercore
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/cyphercore/data:/data
+      - ../../../install/cyphercore:/install
+    entrypoint: bash -c 'sleep 10 && /install/BNetServer'
+    working_dir: /install
+    depends_on:
+      - "cyphercore-db"
+    ports:
+      - 3724:3724
+      - 1119:1119
+      - 8081:8081
+  worldserver:
+    image: build:rolling_cyphercore
+    cap_add:
+    - SYS_PTRACE
+    volumes:
+      # store database outside the container
+      - ../../../data/rolling/cyphercore/data:/data
+      - ../../../install/cyphercore:/install
+      - ../../../rolling/cyphercore:/source
+    entrypoint: bash -c 'sleep 10 && /install/WorldServer'
+    working_dir: /install
+    tty: true # Prevent prompt from spamming stdout
+    stdin_open: true
+    depends_on:
+      - "cyphercore-db"
+    ports:
+      - 8085:8085
+      - 8086:8086
+      - 7878:7878
+      - 3443:3443 # used for remote access via telnet

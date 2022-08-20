@@ -30,3 +30,15 @@
 	path = legion/legioncore
 	url = https://github.com/dufernst/LegionCore-7.3.5.git
 	branch = master
+[submodule "cataclysm/wowregeneration"]
+	path = cataclysm/wowregeneration
+	url = https://github.com/The-Cataclysm-Preservation-Project/wowregeneration.git
+	branch = master
+[submodule "rolling/cyphercore"]
+	path = rolling/cyphercore
+	url = https://github.com/CypherCore/CypherCore.git
+	branch = master
+[submodule "cataclysm/ClientDownloader"]
+	path = cataclysm/ClientDownloader
+	url = https://github.com/The-Cataclysm-Preservation-Project/ClientDownloader.git
+	branch = main
